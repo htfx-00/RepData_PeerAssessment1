@@ -46,7 +46,7 @@ summary(my_data_activity)
 
 ## What is mean total number of steps taken per day?
 
-```{r echo=TRUE, warning=FALSE, fig.align = 'center',out.width = "50%"}
+```{r echo=TRUE, warning=FALSE, fig.align = "center",out.width = "70%"}
 
 #1. Make a histogram of the total number of steps taken each day
 
@@ -62,7 +62,7 @@ summary(my_data_activity_1$steps)[c(3,4)]
 
 ## What is the average daily activity pattern?
 
-```{r echo=TRUE, warning=FALSE, fig.align = 'center',out.width = "50%"}
+```{r echo=TRUE, warning=FALSE, fig.align = "center",out.width = "70%"}
 
 #1.  Make a time series plot (i.e. `type = "l"`) of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
 
@@ -79,7 +79,7 @@ print(paste0("the 5-minute interval which contains the maximum number of steps i
 
 ## Imputing missing values
 
-```{r echo=TRUE, warning=FALSE, fig.align = 'center',out.width = "50%"}
+```{r echo=TRUE, warning=FALSE, fig.align = "center",out.width = "70%"}
 
 #1. Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with `NA`s)
 
@@ -124,24 +124,25 @@ summary(my_hist_fill$steps)[c(3,4)]
 
 hist(my_hist_fill$steps,xlab ="total number of steps by day" ,main="Overlapping histogram plot" ,col = "red" )
 hist(my_data_activity_1$steps,add=T, col = "blue2")
-box()"
+box()
+
 ```
 
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
-```{r echo=TRUE, warning=FALSE, fig.align = 'center',out.width = "50%"}
+```{r echo=TRUE, warning=FALSE, fig.align = "center",out.width = "70%"}
 
 
 #1. Create a new factor variable in the dataset with two levels weekday and weekend indicating whether a given date is a weekday or weekend day.
 
 my_data_activity_fillng$typeday=weekdays(my_data_activity_fillng$date)
 
-weekend=c('samedi','dimanche')
+weekend=c("samedi","dimanche")
 
-my_data_activity_fillng$typeday=ifelse(my_data_activity_fillng$typeday%in%weekend, 'weekend','weekday')
+my_data_activity_fillng$typeday=ifelse(my_data_activity_fillng$typeday%in%weekend, "weekend","weekday")
 
-#2. Make a panel plot containing a time series plot (i.e. type = 'l') of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis)
+#2. Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis)
 
 
 my_mean_filling=my_data_activity_fillng%>%group_by(typeday,interval)%>%summarise(steps=mean(steps))
@@ -149,9 +150,9 @@ my_mean_filling=my_data_activity_fillng%>%group_by(typeday,interval)%>%summarise
 ggplot(data = my_mean_filling, aes(x = interval, y = steps)) + 
   geom_line() +
   facet_grid(typeday ~ .) +
-  ggtitle('the average number of steps') +
-  xlab('5-minute Interval') +
-  ylab('Average Number of Steps') +
+  ggtitle("the average number of steps") +
+  xlab("5-minute Interval") +
+  ylab("Average Number of Steps") +
   theme(plot.title = element_text(hjust = 0.5))
 
 
